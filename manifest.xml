@@ -1,71 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:type="MessageReadCommandSurface">
-    <Id>f0f25b62-5bf6-4f75-8d35-9bfa98dcb123</Id>
-    <Version>1.0.0.0</Version>
-    <ProviderName>Dan</ProviderName>
-    <DefaultLocale>en-US</DefaultLocale>
-    <DisplayName DefaultValue="Send to Notion"/>
-    <Description DefaultValue="Send email details to Notion database."/>
-    <IconUrl DefaultValue="https://your-server.com/assets/icon-32.png"/>
-    <HighResolutionIconUrl DefaultValue="https://your-server.com/assets/icon-64.png"/>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+  xsi:type="MailApp">
 
-    <Hosts>
-        <Host Name="Mailbox"/>
-    </Hosts>
+  <Id>f0f25b62-5bf6-4f75-8d35-9bfa98dcb123</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Dan</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Send to Notion"/>
+  <Description DefaultValue="Send email details to your Notion Database"/>
+  <IconUrl DefaultValue="https://dms0313.github.io/outlook-addin/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://dms0313.github.io/outlook-addin/assets/icon-64.png"/>
 
-    <Requirements>
-        <Sets DefaultMinVersion="1.5">
-            <Set Name="Mailbox"/>
-        </Sets>
-    </Requirements>
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
 
-    <FormSettings>
-        <Form xsi:type="ItemRead">
-            <DesktopSettings>
-                <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
-            </DesktopSettings>
-        </Form>
-    </FormSettings>
+  <Requirements>
+    <Sets DefaultMinVersion="1.5">
+      <Set Name="Mailbox"/>
+    </Sets>
+  </Requirements>
 
-    <ExtensionPoint xsi:type="MessageReadCommandSurface">
-        <OfficeTab id="TabDefault">
-            <Group id="grpNotion" label="Notion">
-                <Control xsi:type="Button" id="btnSendToNotion">
-                    <Label resid="resSendToNotion"/>
-                    <Supertip>
-                        <Title resid="resSendToNotion"/>
-                        <Description resid="resSendToNotionDesc"/>
-                    </Supertip>
-                    <Icon>
-                        <bt:Image size="16" resid="icon16"/>
-                        <bt:Image size="32" resid="icon32"/>
-                    </Icon>
-                    <Action xsi:type="ShowTaskpane">
-                        <SourceLocation resid="taskpaneUrl"/>
-                    </Action>
-                </Control>
-            </Group>
-        </OfficeTab>
-    </ExtensionPoint>
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://dms0313.github.io/outlook-addin/taskpane.html"/>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
 
-    <Resources>
-        <bt:Images>
-            <bt:Image id="icon16" DefaultValue="https://your-server.com/assets/icon-16.png"/>
-            <bt:Image id="icon32" DefaultValue="https://your-server.com/assets/icon-32.png"/>
-        </bt:Images>
+  <ExtensionPoint xsi:type="MessageReadCommandSurface">
+    <OfficeTab id="TabDefault">
+      <Group id="grpNotion" label="Notion">
+        <Control xsi:type="Button" id="btnSendToNotion">
+          <Label resid="resSendToNotion"/>
+          <Supertip>
+            <Title resid="resSendToNotion"/>
+            <Description resid="resSendToNotionDesc"/>
+          </Supertip>
+          <Icon>
+            <bt:Image size="16" resid="icon16"/>
+            <bt:Image size="32" resid="icon32"/>
+          </Icon>
+          <Action xsi:type="ShowTaskpane">
+            <SourceLocation resid="taskpaneUrl"/>
+          </Action>
+        </Control>
+      </Group>
+    </OfficeTab>
+  </ExtensionPoint>
 
-        <bt:Urls>
-            <bt:Url id="taskpaneUrl" DefaultValue="https://localhost:3000/taskpane.html"/>
-        </bt:Urls>
+  <Resources>
+    <bt:Images>
+      <bt:Image id="icon16" DefaultValue="https://dms0313.github.io/outlook-addin/assets/icon-16.png"/>
+      <bt:Image id="icon32" DefaultValue="https://dms0313.github.io/outlook-addin/assets/icon-32.png"/>
+    </bt:Images>
 
-        <bt:ShortStrings>
-            <bt:String id="resSendToNotion" DefaultValue="Send to Notion"/>
-        </bt:ShortStrings>
+    <bt:Urls>
+      <bt:Url id="taskpaneUrl" DefaultValue="https://dms0313.github.io/outlook-addin/taskpane.html"/>
+    </bt:Urls>
 
-        <bt:LongStrings>
-            <bt:String id="resSendToNotionDesc" DefaultValue="Send this email's subject, sender, body and date to your Notion database."/>
-        </bt:LongStrings>
-    </Resources>
+    <bt:ShortStrings>
+      <bt:String id="resSendToNotion" DefaultValue="Send to Notion"/>
+    </bt:ShortStrings>
+
+    <bt:LongStrings>
+      <bt:String id="resSendToNotionDesc" DefaultValue="Send this email’s subject, sender, date, and body to your Notion database."/>
+    </bt:LongStrings>
+  </Resources>
+
 </OfficeApp>
